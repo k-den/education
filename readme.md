@@ -1,0 +1,1 @@
+It is a project for teaching basic skills programming in PHP.
