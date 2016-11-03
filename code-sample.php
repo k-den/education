@@ -19,6 +19,10 @@
             $this->PDO = new PDO($dsn, $user, $pass, $driver_options);
             $this->numExecutes = 0;
             $this->numStatements = 0;
+
+            $this->numExecutes = 0;
+
+            $this->numStatements = 0;
         }
 
         public function __call($func, $args) {
@@ -78,6 +82,15 @@
                 $this->PDOS->bindParam($column, $param);
             else
                 $this->PDOS->bindParam($column, $param, $type);
+        }
+
+        public function bindParamFake($column, &$param, $type=NULL) {
+            if ($type === NULL) {
+                $this->PDOS->bindParam($column, $param);
+
+            } else
+                $this->PDOS->bindParam($column, $param, $type);
+            }
         }
 
         public function execute() {

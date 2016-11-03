@@ -25,12 +25,15 @@ class DB {
      * @param
      * @return $objInstance;
      */
-    
-        
+
+
     public static function getInstance(  ) {
 
         if(!self::$objInstance){
             self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
+
+            self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
 
@@ -39,27 +42,44 @@ class DB {
     } # end method
 
     public static function getInstance_den(  ) {
-    
-    	if(!self::$objInstance){
-    		self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
-    		self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    	}
-    
-    	return self::$objInstance;
-    
+
+        if(!self::$objInstance){
+            self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
+
+            self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
+        }
+
+        return self::$objInstance;
+
     } # end method
-    
+
     public static function getInstance_den(  ) {
-    
-    	if(!self::$objInstance){
-    		self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
-    		self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    	}
-    
-    	return self::$objInstance;
-    
+
+        if(!self::$objInstance){
+            self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
+            self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
+        }
+
+        return self::$objInstance;
+
     } # end method
-    
+
+    public static function getInstanceNewOne(  ) {
+
+        if(!self::$objInstance){
+            self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+
+        self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        return self::$objInstance;
+
+    } # end method
+
     /*
      * Passes on any static calls to this class onto the singleton PDO instance
      * @param $chrMethod, $arrArguments
