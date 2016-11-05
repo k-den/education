@@ -14,6 +14,9 @@ class DB {
      * Set to private so no-one can create a new instance via ' = new DB();'
      */
     private function __construct() {}
+    
+    private function __construct_den() {}
+    
 
     /*
      * Like the constructor, we make __clone private so nobody can clone the instance
@@ -73,4 +76,12 @@ class DB {
 
     } # end method
 
+    final public static function __callStatic_den( $chrMethod, $arrArguments ) {
+    
+    	$objInstance = self::getInstance();
+    
+    	return call_user_func_array(array($objInstance, $chrMethod), $arrArguments);
+    
+    } # end method
+    
 }

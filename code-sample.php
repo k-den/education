@@ -25,7 +25,7 @@
             return call_user_func_array(array(&$this->PDO, $func), $args);
         }
 
-        public function prepare() {
+        public function prepare_den() {
             $this->numStatements++;
 
             $args = func_get_args();
@@ -34,6 +34,15 @@
             return new PDOpStatement($this, $PDOS);
         }
 
+        public function prepare() {
+        	$this->numStatements++;
+        
+        	$args = func_get_args();
+        	$PDOS = call_user_func_array(array(&$this->PDO, 'prepare'), $args);
+        
+        	return new PDOpStatement($this, $PDOS);
+        }
+        
         public function query() {
             $this->numExecutes++;
             $this->numStatements++;
@@ -84,6 +93,12 @@
             $this->PDOp->numExecutes++;
             $args = func_get_args();
             return call_user_func_array(array(&$this->PDOS, 'execute'), $args);
+        }
+        
+        public function execute_den() {
+        	$this->PDOp->numExecutes++;
+        	$args = func_get_args();
+        	return call_user_func_array(array(&$this->PDOS, 'execute'), $args);
         }
 
         public function __get($property) {
