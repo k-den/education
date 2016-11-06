@@ -58,18 +58,7 @@ class DB {
 
     } # end method
 
-    public static function getInstance_den(  ) {
-
-        if(!self::$objInstance){
-            self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
-            self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
-        }
-
-        return self::$objInstance;
-
-    } # end method
+  
 
     public static function getInstanceNewOne(  ) {
 
@@ -96,12 +85,6 @@ class DB {
 
     } # end method
 
-    final public static function __callStatic_den( $chrMethod, $arrArguments ) {
     
-    	$objInstance = self::getInstance();
-    
-    	return call_user_func_array(array($objInstance, $chrMethod), $arrArguments);
-    
-    } # end method
     
 }
