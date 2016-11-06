@@ -14,9 +14,9 @@ class DB {
      * Set to private so no-one can create a new instance via ' = new DB();'
      */
     private function __construct() {}
-    
+
     private function __construct_den() {}
-    
+
 
     /*
      * Like the constructor, we make __clone private so nobody can clone the instance
@@ -58,7 +58,7 @@ class DB {
 
     } # end method
 
-  
+
 
     public static function getInstanceNewOne(  ) {
 
@@ -68,9 +68,27 @@ class DB {
 
         self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         return self::$objInstance;
 
     } # end method
+
+
+    public static function getInstanceNewTwo($param1, $param2, $param3) {
+
+        if(!self::$objInstance){
+            self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+
+        self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        self::$objInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        return self::$objInstance;
+
+    } # end method
+
 
     /*
      * Passes on any static calls to this class onto the singleton PDO instance
@@ -85,6 +103,6 @@ class DB {
 
     } # end method
 
-    
-    
+
+
 }
