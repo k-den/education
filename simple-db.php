@@ -15,7 +15,7 @@ class DB {
      */
     private function __construct() {}
     
-    private function __construct_den() {}
+    private function __construct_den_merge() {}
     
 
     /*
@@ -44,7 +44,7 @@ class DB {
 
     } # end method
 
-    public static function getInstance_den(  ) {
+    public static function getInstance_den_merge(  ) {
 
         if(!self::$objInstance){
             self::$objInstance = new PDO(DB_DSN, DB_USER, DB_PASS);
