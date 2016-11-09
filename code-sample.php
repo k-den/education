@@ -38,7 +38,7 @@
             return new PDOpStatement($this, $PDOS);
         }
 
-        public function prepare_den_merge() {
+        public function prepare_den() {
         	$this->numStatements++;
         
         	$args = func_get_args();
@@ -124,7 +124,7 @@
             return call_user_func_array(array(&$this->PDOS, 'execute'), $args);
         }
 
-        public function execute_den_merge() {
+        public function execute_den() {
         	$this->PDOp->numExecutes++;
         	$args = func_get_args();
         	return call_user_func_array(array(&$this->PDOS, 'execute'), $args);
