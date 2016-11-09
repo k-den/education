@@ -35,19 +35,33 @@
             $args = func_get_args();
             $PDOS = call_user_func_array(array(&$this->PDO, 'prepare'), $args);
 
+            $PDOS = call_user_func_array(array(&$this->PDO, 'prepare'), $args);
+
             return new PDOpStatement($this, $PDOS);
         }
 
         public function prepare_den() {
-        	$this->numStatements++;
-        
-        	$args = func_get_args();
-        	$PDOS = call_user_func_array(array(&$this->PDO, 'prepare'), $args);
-        
-        	return new PDOpStatement($this, $PDOS);
+            $this->numStatements++;
+
+            $args = func_get_args();
+            $PDOS = call_user_func_array(array(&$this->PDO, 'prepare'), $args);
+
+            $args = func_get_args();
+            return new PDOpStatement($this, $PDOS);
         }
-        
+
         public function query() {
+            $this->numExecutes++;
+            $this->numStatements++;
+
+            $args = func_get_args();
+            $PDOS = call_user_func_array(array(&$this->PDO, 'query'), $args);
+
+            return new PDOpStatement($this, $PDOS);
+        }
+
+
+        public function query_second() {
             $this->numExecutes++;
             $this->numStatements++;
 
@@ -125,11 +139,11 @@
         }
 
         public function execute_den() {
-        	$this->PDOp->numExecutes++;
-        	$args = func_get_args();
-        	return call_user_func_array(array(&$this->PDOS, 'execute'), $args);
+            $this->PDOp->numExecutes++;
+            $args = func_get_args();
+            return call_user_func_array(array(&$this->PDOS, 'execute'), $args);
         }
-        
+
         public function __get($property) {
             return $this->PDOS->$property;
         }
